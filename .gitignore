@@ -52,4 +52,4 @@ Mkfile.old
 dkms.conf
 
 # Vscode
-.vscode/
+.usb_keyboard/
