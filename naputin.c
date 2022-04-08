@@ -1,8 +1,8 @@
-/* USB configuration inspired by USB Keyboard: 
-* Example for Teensy USB Development Board
-* http://www.pjrc.com/teensy/usb_keyboard.html
-*
-*/
+/* USB configuration inspired by USB Keyboard:
+ * Example for Teensy USB Development Board
+ * http://www.pjrc.com/teensy/usb_keyboard.html
+ *
+ */
 
 #include <avr/io.h>
 #include <avr/pgmspace.h>
@@ -30,10 +30,21 @@ static const uint8_t PROGMEM endpoint_config_table[] = {
     0,
     0,
     1, EP_TYPE_INTERRUPT_IN, EP_SIZE(KEYBOARD_SIZE) | KEYBOARD_BUFFER,
-    9
+    9};
+
+static uint8_t PROGMEM device_descriptor[] = {
+    18,                               // bLength
+    1,                                // bDescriptorType
+    0x00, 0x02,                       // bcdUSB
+    0,                                // bDeviceClass
+    0,                                // bDeviceSubClass
+    0,                                // bDeviceProtocol
+    ENDPOINT0_SIZE,                   // bMaxPacketSize0
+    LSB(VENDOR_ID), MSB(VENDOR_ID),   // idVendor
+    LSB(PRODUCT_ID), MSB(PRODUCT_ID), // idProduct
+    0x00, 0x01,                       // bcdDevice
+    1,                                // iManufacturer
+    2,                                // iProduct
+    0,                                // iSerialNumber
+    1                                 // bNumConfigurations
 };
-
-int main(void)
-{
-
-}
