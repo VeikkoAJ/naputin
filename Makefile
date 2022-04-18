@@ -1,6 +1,6 @@
 # Hey Emacs, this is a -*- makefile -*-
 #----------------------------------------------------------------------------
-# WinAVR Makefile Template written by Eric B. Weddington, JË†rg Wunsch, et al.
+# WinAVR Makefile Template written by Eric B. Weddington, Jörg Wunsch, et al.
 #
 # Released to the Public Domain
 #
@@ -41,34 +41,44 @@
 
 
 # Target file name (without extension).
-TARGET = naputin
+TARGET = example
 
 
 # List C source files here. (C dependencies are automatically generated.)
 SRC =	$(TARGET).c \
-	naputin.c \
-#	print.c
+	usb_keyboard.c
 
+
+# MCU name, you MUST set this to match the board you are using
 # type "make clean" after changing this, so all files will be rebuilt
+#
+#MCU = at90usb162       # Teensy 1.0
 MCU = atmega32u4        # Teensy 2.0
+#MCU = at90usb646       # Teensy++ 1.0
+#MCU = at90usb1286      # Teensy++ 2.0
+
 
 # Processor frequency.
 #   Normally the first thing your program should do is set the clock prescaler,
-#   so your program will run at the correct speed. You should also set this
-#   variable to same clock speed. The _delay_ms() macro uses this, and many
-#   examples use this variable to calculate timings. Do not add a "UL" here.
+#   so your program will run at the correct speed.  You should also set this
+#   variable to same clock speed.  The _delay_ms() macro uses this, and many
+#   examples use this variable to calculate timings.  Do not add a "UL" here.
 F_CPU = 16000000
+
 
 # Output format. (can be srec, ihex, binary)
 FORMAT = ihex
+
 
 # Object files directory
 #     To put object files in current directory, use a dot (.), do NOT make
 #     this an empty or blank macro!
 OBJDIR = .
 
+
 # List C++ source files here. (C dependencies are automatically generated.)
 CPPSRC = 
+
 
 # List Assembler source files here.
 #     Make them always end in a capital .S.  Files ending in a lowercase .s
@@ -79,10 +89,12 @@ CPPSRC =
 #     care about how the name is spelled on its command-line.
 ASRC =
 
+
 # Optimization level, can be [0, 1, 2, 3, s]. 
 #     0 = turn off optimization. s = optimize for size.
 #     (Note: 3 is not always the best optimization level. See avr-libc FAQ.)
 OPT = s
+
 
 # Debugging format.
 #     Native formats for AVR-GCC's -g are dwarf-2 [default] or stabs.
@@ -90,11 +102,13 @@ OPT = s
 #     AVR [Extended] COFF format requires stabs, plus an avr-objcopy run.
 DEBUG = dwarf-2
 
+
 # List any extra directories to look for include files here.
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
 EXTRAINCDIRS = 
+
 
 # Compiler flag to set the C Standard level.
 #     c89   = "ANSI" C
@@ -103,11 +117,14 @@ EXTRAINCDIRS =
 #     gnu99 = c99 plus GCC extensions
 CSTANDARD = -std=gnu99
 
+
 # Place -D or -U options here for C sources
 CDEFS = -DF_CPU=$(F_CPU)UL
 
+
 # Place -D or -U options here for ASM sources
 ADEFS = -DF_CPU=$(F_CPU)
+
 
 # Place -D or -U options here for C++ sources
 CPPDEFS = -DF_CPU=$(F_CPU)UL
