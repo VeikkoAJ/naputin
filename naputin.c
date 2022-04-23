@@ -32,8 +32,7 @@ uint8_t keys[6][15] = {
 // KEY RIGHT ALT = [8][5]
 // KEY RIGHT GUI = [7][5]
 
-#define CPU_PRESCALE(n)	(CLKPR = 0x80, CLKPR = (n))
-
+#define CPU_PRESCALE(n) (CLKPR = 0x80, CLKPR = (n))
 
 uint16_t idle_count = 0;
 
@@ -42,7 +41,7 @@ int main(void)
     uint8_t reset_idle;
     uint16_t state[6], state_prev[6], sum[6];
 
-    char * volatile const columns[15] = {
+    char *volatile const columns[15] = {
         &PORTF,
         &PORTF,
         &PORTF,
@@ -81,7 +80,8 @@ int main(void)
     // configure pins as inputs and outputs
 
     usb_init();
-    while (!usb_configured())  /* wait */;
+    while (!usb_configured()) /* wait */
+        ;
 
     _delay_ms(1000);
 
@@ -89,7 +89,8 @@ int main(void)
     TCCR0B = 0x05;
     TIMSK0 = (1 << TOIE0);
 
-    while (1) {
+    while (1)
+    {
         // configure ports 0 = input, 1 = output
         // columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
         // rows: D1 D0 B7 B3 B2 B1
@@ -177,9 +178,9 @@ int main(void)
                 {
                     if ((state[i] & (0x01 << b)) == (state_prev[i] & (0x01 << b)))
                     {
-                        sum[i] |= ((state[i] & (0x01 << b)) << b);
+                        sum[i] |= (state[i] & (0x01 << b));
                     }
-                    if ((sum[i] & (0x01 << b)) && (i_key < 6))
+                    if (((sum[i] >> b) & 0x01 && (i_key < 6))
                     {
                         keyboard_keys[i_key] = keys[i][b];
                         i_key++;
@@ -188,6 +189,6 @@ int main(void)
             }
             state_prev[i] = state[i];
         }
-    usb_keyboard_send();
+        usb_keyboard_send();
     }
 }
