@@ -2,11 +2,12 @@
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "usb_keyboard.h"
+#include "usb_keyboard_debug.h"
+#include "print.h"
 
 // add caps-lock led pin
 
-uint8_t keys[6][15] = {
+uint8_t keys[15][6] = {
     {KEY_ESC, KEY_TILDE, KEY_TAB, KEY_CAPS_LOCK, 0x00, 0x00},
     {0x00, KEY_1, KEY_Q, KEY_A, KEY_BACKSLASH, 0x00},
     {KEY_F1, KEY_2, KEY_W, KEY_S, KEY_Z, 0x00},
@@ -82,6 +83,7 @@ int main(void)
     usb_init();
     while (!usb_configured()) /* wait */
         ;
+    print("usb configured\n");
 
     _delay_ms(1000);
 
@@ -91,16 +93,34 @@ int main(void)
 
     while (1)
     {
+        uint8_t i, b, i_key;
+        print("\nmain loop started\n");
+        // empty all keypresses
+        for (i_key = 0; i < 6; i_key++)
+        {
+            keyboard_keys[i_key] = 0;
+        }
+        i_key = 0;
+        keyboard_modifier_keys = 0x00;
         // configure ports 0 = input, 1 = output
         // columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
         // rows: D1 D0 B7 B3 B2 B1
+        print("START OF PROGRAM");
+        print("\nmodifiers: ");
+        phex(keyboard_modifier_keys);
+        print("\nkeys:\n");
+        for (i_key = 0; i_key < 6; i_key++)
+        {
+            phex(keyboard_keys[i_key]);
+            print(", ");
+        }
+        i_key = 0;
 
         DDRB = 0xCC; // 0, 1 inputs, 2, 3, 6, 7 outputs
         DDRC = 0xC0; // 6, 7 outputs
         DDRD = 0xCC; // 0, 1, inputs 2, 3, 4, 5 outputs
 
         // read all ports
-        uint8_t i, b, i_key;
         for (i = 0; i < 15; i++)
         {
             *(columns[i]) = *(columns[i]) | (1 << columnShift[i]);
@@ -128,11 +148,6 @@ int main(void)
             {
                 state[5] = state[5] | (0x01 << (i % 16));
             }
-        }
-        // empty all keypresses
-        for (i_key = 0; i < 6; i_key++)
-        {
-            keyboard_keys[i] = 0;
         }
         // check for changes
         for (i = 0; i < 6; i++)
@@ -189,6 +204,16 @@ int main(void)
             }
             state_prev[i] = state[i];
         }
-        usb_keyboard_send();
+        print("END OF PROGRAM\n");
+        print("\nmodifiers: ");
+        phex(keyboard_modifier_keys);
+        print("\nkeys:\n");
+        for (i_key = 0; i_key < 6; i_key++)
+        {
+            phex(keyboard_keys[i_key]);
+            print(", ");
+        }
+
+        // usb_keyboard_send();
     }
 }
