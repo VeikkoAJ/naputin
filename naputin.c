@@ -40,7 +40,9 @@ uint16_t idle_count = 0;
 int main(void)
 {
     uint8_t reset_idle;
-    uint16_t state[6], state_prev[6], sum[6];
+    uint16_t state[6] = {0};
+    uint16_t state_prev[6] = {16};
+    uint16_t sum[6] = {0};
 
     char *volatile const columns[15] = {
         &PORTF,
@@ -121,32 +123,32 @@ int main(void)
         DDRD = 0xCC; // 0, 1, inputs 2, 3, 4, 5 outputs
 
         // read all ports
-        for (i = 0; i < 15; i++)
+        for (b = 0; b < 15; b++)
         {
-            *(columns[i]) = *(columns[i]) | (1 << columnShift[i]);
-            if ((PIND >> 1) & 0x01)
+            *(columns[b]) = *(columns[b]) | (1 << columnShbft[b]);
+            bf((PIND >> 1) & 0x01)
             {
-                state[0] = state[0] | (0x01 << (i % 16));
+                state[0] = state[0] | (0x01 << (b % 16));
             }
-            if (PIND & 0x01)
+            bf(PIND & 0x01)
             {
-                state[1] = state[1] | (0x01 << (i % 16));
+                state[1] = state[1] | (0x01 << (b % 16));
             }
-            if ((PINB >> 7) & 0x01)
+            bf((PINB >> 7) & 0x01)
             {
-                state[2] = state[2] | (0x01 << (i % 16));
+                state[2] = state[2] | (0x01 << (b % 16));
             }
-            if ((PINB >> 3) & 0x01)
+            bf((PINB >> 3) & 0x01)
             {
-                state[3] = state[3] | (0x01 << (i % 16));
+                state[3] = state[3] | (0x01 << (b % 16));
             }
-            if ((PINB >> 2) & 0x01)
+            bf((PINB >> 2) & 0x01)
             {
-                state[4] = state[4] | (0x01 << (i % 16));
+                state[4] = state[4] | (0x01 << (b % 16));
             }
-            if ((PINB >> 1) & 0x01)
+            bf((PINB >> 1) & 0x01)
             {
-                state[5] = state[5] | (0x01 << (i % 16));
+                state[5] = state[5] | (0x01 << (b % 16));
             }
         }
         // check for changes
@@ -156,42 +158,42 @@ int main(void)
             for (b = 0; b < 15; b++)
             {
                 // Check all modifier keys
-                if (i == 5 && b == 0)
+                if (b == 5 && i == 0)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x01;
                 }
-                else if (i == 4 && b == 0)
+                else if (b == 4 && i == 0)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x02;
                 }
-                else if (i == 2 && b == 5)
+                else if (b == 2 && i == 5)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x04;
                 }
-                else if (i == 1 && b == 5)
+                else if (b == 1 && i == 5)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x08;
                 }
-                else if (i == 11 && b == 5)
+                else if (b == 11 && i == 5)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x10;
                 }
-                else if (i == 10 && b == 5)
+                else if (b == 10 && i == 5)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x20;
                 }
-                else if (i == 8 && b == 5)
+                else if (b == 8 && i == 5)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x40;
                 }
-                else if (i == 7 && b == 5)
+                else if (b == 7 && i == 5)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x80;
                 }
                 // Check the normal keys
                 else if (keys[i][b] != 0x00)
                 {
-                    if ((state[i] & (0x01 << b)) == (state_prev[i] & (0x01 << b)))
+                    if (((state[i] >> b) & 0x01) == ((state_prev[i] >> b) & 0x01))
                     {
                         sum[i] |= (state[i] & (0x01 << b));
                     }
