@@ -95,6 +95,8 @@ void usb_debug_flush_output(void);	// immediately transmit any buffered output
 #define KEY_F10		67
 #define KEY_F11		68
 #define KEY_F12		69
+#define KEY_DELTA 72 // Actually the F23 key
+#define KEY_OMEGA 73 // Actually the F24 key
 #define KEY_PRINTSCREEN	70		
 #define KEY_SCROLL_LOCK	71		
 #define KEY_PAUSE	72
