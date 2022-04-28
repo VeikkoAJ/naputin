@@ -98,7 +98,7 @@ int main(void)
         uint8_t i, b, i_key;
         print("\nmain loop started\n");
         // empty all keypresses
-        for (i_key = 0; i < 6; i_key++)
+        for (i_key = 0; i_key < 6; i_key++)
         {
             keyboard_keys[i_key] = 0;
         }
@@ -107,17 +107,6 @@ int main(void)
         // configure ports 0 = input, 1 = output
         // columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
         // rows: D1 D0 B7 B3 B2 B1
-        print("START OF PROGRAM");
-        print("\nmodifiers: ");
-        phex(keyboard_modifier_keys);
-        print("\nkeys:\n");
-        for (i_key = 0; i_key < 6; i_key++)
-        {
-            phex(keyboard_keys[i_key]);
-            print(", ");
-        }
-        i_key = 0;
-
         DDRB = 0xCC; // 0, 1 inputs, 2, 3, 6, 7 outputs
         DDRC = 0xC0; // 6, 7 outputs
         DDRD = 0xCC; // 0, 1, inputs 2, 3, 4, 5 outputs
@@ -125,31 +114,32 @@ int main(void)
         // read all ports
         for (b = 0; b < 15; b++)
         {
-            *(columns[b]) = *(columns[b]) | (1 << columnShbft[b]);
-            bf((PIND >> 1) & 0x01)
+            *(columns[b]) = *(columns[b]) | (0x01 << columnShift[b]);
+            if((PIND >> 1) & 0x01)
             {
-                state[0] = state[0] | (0x01 << (b % 16));
+                state[0] = state[0] | (0x01 << b );
             }
-            bf(PIND & 0x01)
+            if(PIND & 0x01)
             {
-                state[1] = state[1] | (0x01 << (b % 16));
+                state[1] = state[1] | (0x01 << b);
             }
-            bf((PINB >> 7) & 0x01)
+            if((PINB >> 7) & 0x01)
             {
-                state[2] = state[2] | (0x01 << (b % 16));
+                state[2] = state[2] | (0x01 << b);
             }
-            bf((PINB >> 3) & 0x01)
+            if((PINB >> 3) & 0x01)
             {
-                state[3] = state[3] | (0x01 << (b % 16));
+                state[3] = state[3] | (0x01 << b);
             }
-            bf((PINB >> 2) & 0x01)
+            if((PINB >> 2) & 0x01)
             {
-                state[4] = state[4] | (0x01 << (b % 16));
+                state[4] = state[4] | (0x01 << b);
             }
-            bf((PINB >> 1) & 0x01)
+            if((PINB >> 1) & 0x01)
             {
-                state[5] = state[5] | (0x01 << (b % 16));
+                state[5] = state[5] | (0x01 << b);
             }
+            *(columns[b]) = *(columns[b]) & ~(0x01 << columnShift[b]);
         }
         // check for changes
         for (i = 0; i < 6; i++)
@@ -158,35 +148,35 @@ int main(void)
             for (b = 0; b < 15; b++)
             {
                 // Check all modifier keys
-                if (b == 5 && i == 0)
+                if (b == 5 && i == 0 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x01;
                 }
-                else if (b == 4 && i == 0)
+                else if (b == 4 && i == 0 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x02;
                 }
-                else if (b == 2 && i == 5)
+                else if (b == 2 && i == 5 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x04;
                 }
-                else if (b == 1 && i == 5)
+                else if (b == 1 && i == 5 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x08;
                 }
-                else if (b == 11 && i == 5)
+                else if (b == 11 && i == 5 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x10;
                 }
-                else if (b == 10 && i == 5)
+                else if (b == 10 && i == 5 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x20;
                 }
-                else if (b == 8 && i == 5)
+                else if (b == 8 && i == 5&& (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x40;
                 }
-                else if (b == 7 && i == 5)
+                else if (b == 7 && i == 5 && (state[i] >> b) & 0x01)
                 {
                     keyboard_modifier_keys = keyboard_modifier_keys | 0x80;
                 }
@@ -197,7 +187,7 @@ int main(void)
                     {
                         sum[i] |= (state[i] & (0x01 << b));
                     }
-                    if (((sum[i] >> b) & 0x01 && (i_key < 6))
+                    if ((sum[i] >> b) & 0x01 && (i_key < 6))
                     {
                         keyboard_keys[i_key] = keys[i][b];
                         i_key++;
@@ -206,7 +196,6 @@ int main(void)
             }
             state_prev[i] = state[i];
         }
-        print("END OF PROGRAM\n");
         print("\nmodifiers: ");
         phex(keyboard_modifier_keys);
         print("\nkeys:\n");
