@@ -81,13 +81,12 @@ int main(void)
 
     CPU_PRESCALE(0);
 
-    // configure pins as inputs and outputs
-
     usb_init();
-    while (!usb_configured()) /* wait */
+    while (!usb_configured())
         ;
     print("usb configured\n");
 
+    // wait for system to become ready
     _delay_ms(1000);
 
     TCCR0A = 0x00;
@@ -105,17 +104,24 @@ int main(void)
         }
         i_key = 0;
         keyboard_modifier_keys = 0x00;
-        // configure ports 0 = input, 1 = output
+        // configure ports 0 = input, 1 = output, 1 = unused (as outputs)
         // columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
         // rows: D1 D0 B7 B3 B2 B1
-        DDRB = 0xCC; // 0, 1 inputs, 2, 3, 6, 7 outputs
-        DDRC = 0xC0; // 6, 7 outputs
-        DDRD = 0xCC; // 0, 1, inputs 2, 3, 4, 5 outputs
+        DDRB = 0b01110001; // 3,2,1 inputs, 6,5,4 outputs, 7,0 unused
+        DDRC = 0b11111111; // 7,6 outputs, 5,4,3,2,1,0 unused
+        DDRD = 0b11111100; // 1,0 inputs 7,3,2 outputs, 4,5,6 unused
+        DDRF = 0b11111111; // inputs, 0,1,4,5,6,7 outputs, 2,3 unused
+
+        // set all pins low
+        PORTB = 0b0000000;
+        PORTC = 0b0000000;
+        PORTD = 0b0000000;
+        PORTF = 0b0000000;
 
         // read all ports
         for (b = 0; b < 15; b++)
         {
-            *(columns[b]) = *(columns[b]) | (0x01 << columnShift[b]);
+            *(columns[b]) = *(columns[b]) | (0x01 << columnShift[b]); // set pin high
             if ((PIND >> 1) & 0x01)
             {
                 state[0][b] = true;
@@ -140,7 +146,7 @@ int main(void)
             {
                 state[5][b] = true;
             }
-            *(columns[b]) = *(columns[b]) & ~(0x01 << columnShift[b]);
+            *(columns[b]) = *(columns[b]) & ~(0x01 << columnShift[b]); // set pin low
         }
         // check for changes
         for (i = 0; i < 6; i++)
@@ -191,16 +197,15 @@ int main(void)
         // Check the normal keys
     }
     state_prev[i] = state[i];
-}
-print("\nmodifiers: ");
-phex(keyboard_modifier_keys);
-print("\nkeys:\n");
-for (i_key = 0; i_key < 6; i_key++)
-{
-    phex(keyboard_keys[i_key]);
-    print(", ");
-}
 
-// usb_keyboard_send();
-}
+    print("\nmodifiers: ");
+    phex(keyboard_modifier_keys);
+    print("\nkeys: ");
+    for (i_key = 0; i_key < 6; i_key++)
+    {
+        phex(keyboard_keys[i_key]);
+        print(", ");
+    }
+
+    // usb_keyboard_send();
 }
