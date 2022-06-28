@@ -47,38 +47,38 @@ int main(void)
     bool keyboard_modifier_keys[6] = {0};
 
     char *volatile const inputColumns[15] = {
-        &PINF,
-        &PINF,
-        &PINF,
-        &PINF,
-        &PINF,
-        &PINF,
-        &PINB,
-        &PINB,
-        &PINB,
-        &PIND,
-        &PIND,
-        &PINC,
-        &PINC,
-        &PIND,
-        &PIND};
+        &PINF,  // 0
+        &PINF,  // 1
+        &PINF,  // 2
+        &PINF,  // 3
+        &PINF,  // 4
+        &PINF,  // 5
+        &PINB,  // 6
+        &PINB,  // 7
+        &PINB,  // 8
+        &PIND,  // 9
+        &PIND,  // 10
+        &PINC,  // 11
+        &PINC,  // 12
+        &PIND,  // 13
+        &PIND}; // 14
 
     const char inputColumnShifts[15] = {
-        0,
-        1,
-        4,
-        5,
-        6,
-        7,
-        6,
-        5,
-        4,
-        7,
-        6,
-        7,
-        6,
-        3,
-        2};
+        0,  // 0
+        1,  // 1
+        4,  // 2
+        5,  // 3
+        6,  // 4
+        7,  // 5
+        6,  // 6
+        5,  // 7
+        4,  // 8
+        7,  // 9
+        6,  // 10
+        7,  // 11
+        6,  // 12
+        3,  // 13
+        2}; // 14
 
     char *volatile const outputRows[6] = {
         &PORTD,
