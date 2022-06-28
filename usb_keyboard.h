@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-void usb_init(void);		  // initialize everything
+void usb_init(void);          // initialize everything
 uint8_t usb_configured(void); // is the USB port configured
 
 int8_t usb_keyboard_press(uint8_t key, uint8_t modifier);
@@ -97,8 +97,6 @@ extern volatile uint8_t keyboard_leds;
 #define KEY_F10 67
 #define KEY_F11 68
 #define KEY_F12 69
-#define KEY_DELTA 72 // Actually the F23 key
-#define KEY_OMEGA 73 // Actually the F24 key
 #define KEY_PRINTSCREEN 70
 #define KEY_SCROLL_LOCK 71
 #define KEY_PAUSE 72
@@ -129,6 +127,10 @@ extern volatile uint8_t keyboard_leds;
 #define KEYPAD_9 97
 #define KEYPAD_0 98
 #define KEYPAD_PERIOD 99
+
+#define KEY_DELTA 0x71 // Actually the F22 key
+#define KEY_OMEGA 0x72 // Actually the F23 key
+#define KEY_SIGMA 0x73 // Actually the F24 key
 
 // Everything below this point is only intended for usb_serial.c
 #ifdef USB_SERIAL_PRIVATE_INCLUDE
