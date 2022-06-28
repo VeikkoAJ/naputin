@@ -138,7 +138,7 @@ int main(void)
         for (i = 0; i < 6; i++)
         {
             // set i:th row low
-            *(outputRows[i]) &= ~(1 << outputRowShifts[i]);
+            *(outputRows[i]) &= ~(0x01 << outputRowShifts[i]);
 
             // check all columns
             for (b = 0; b < 15; b++)
