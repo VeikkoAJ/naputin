@@ -44,6 +44,7 @@ int main(void)
     bool state[6][15] = {0};
     bool state_prev[6][15] = {0};
     bool sum[6][15] = {0};
+    bool keyboard_modifier_keys[6] = {0};
 
     char *volatile const inputColumns[15] = {
         &PINF,
@@ -105,18 +106,17 @@ int main(void)
     // wait for system to become ready
     _delay_ms(1000);
 
-    TCCR0A = 0x00;
-    TCCR0B = 0x05;
-    TIMSK0 = (1 << TOIE0);
-
+    uint8_t i, b, i_key;
     while (1)
     {
-        uint8_t i, b, i_key;
         print("\nmain loop started\n");
-        // empty all keypresses
-        for (i_key = 0; i_key < 6; i_key++)
+        // reset states
+        for (i = 0; i < 6; i++)
         {
-            keyboard_keys[i_key] = 0;
+            for (b = 0; i < 15; i++)
+            {
+                state[i][b] = false;
+            }
         }
         i_key = 0;
         keyboard_modifier_keys = 0x00;
@@ -148,64 +148,26 @@ int main(void)
             // set i:th row back high
             *(outputRows[i]) |= (1 << outputRowShifts[i]);
         }
-        // check for changes
+        // add sum logic for changes
+
+        print("\nstate:\n");
         for (i = 0; i < 6; i++)
         {
-            reset_idle = 1;
+
             for (b = 0; b < 15; b++)
             {
-                if (state[i][b] == state_prev[i][b])
+                if (state[i][b])
                 {
-                    sum[i][b] = state[i][b];
+                    print("1, ");
                 }
-                state_prev[i] = state[i];
+                else
+                {
+                    print("0, ");
+                }
             }
+            print("\n");
         }
-        // Check all modifier keys
-        if (b == 5 && i == 0 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x01;
-        }
-        else if (b == 4 && i == 0 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x02;
-        }
-        else if (b == 2 && i == 5 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x04;
-        }
-        else if (b == 1 && i == 5 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x08;
-        }
-        else if (b == 11 && i == 5 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x10;
-        }
-        else if (b == 10 && i == 5 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x20;
-        }
-        else if (b == 8 && i == 5 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x40;
-        }
-        else if (b == 7 && i == 5 && (state[i] >> b) & 0x01)
-        {
-            keyboard_modifier_keys = keyboard_modifier_keys | 0x80;
-        }
-        // Check the normal keys
+        // usb_keyboard_send();
+        _delay_ms(1000);
     }
-    state_prev[i] = state[i];
-
-    print("\nmodifiers: ");
-    phex(keyboard_modifier_keys);
-    print("\nkeys: ");
-    for (i_key = 0; i_key < 6; i_key++)
-    {
-        phex(keyboard_keys[i_key]);
-        print(", ");
-    }
-
-    // usb_keyboard_send();
 }
