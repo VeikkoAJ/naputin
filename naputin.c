@@ -45,39 +45,55 @@ int main(void)
     bool state_prev[6][15] = {0};
     bool sum[6][15] = {0};
 
-    char *volatile const columns[15] = {
-        &PORTF,
-        &PORTF,
-        &PORTF,
-        &PORTF,
-        &PORTF,
-        &PORTF,
-        &PORTB,
-        &PORTB,
-        &PORTB,
-        &PORTD,
-        &PORTD,
-        &PORTC,
-        &PORTC,
-        &PORTD,
-        &PORTD};
+    char *volatile const inputColumns[15] = {
+        &PINF,
+        &PINF,
+        &PINF,
+        &PINF,
+        &PINF,
+        &PINF,
+        &PINB,
+        &PINB,
+        &PINB,
+        &PIND,
+        &PIND,
+        &PINC,
+        &PINC,
+        &PIND,
+        &PIND};
 
-    const char columnShift[15] = {
-        0,  // F
-        1,  // F
-        4,  // F
-        5,  // F
-        6,  // F
-        7,  // F
-        6,  // B
-        5,  // B
-        4,  // B
-        7,  // D
-        6,  // D
-        7,  // C
-        6,  // C
-        3,  // D
-        2}; // D
+    const char inputColumnShifts[15] = {
+        0,
+        1,
+        4,
+        5,
+        6,
+        7,
+        6,
+        5,
+        4,
+        7,
+        6,
+        7,
+        6,
+        3,
+        2};
+
+    char *volatile const outputRows[6] = {
+        &PORTD,
+        &PORTD,
+        &PORTB,
+        &PORTB,
+        &PORTB,
+        &PORTB};
+
+    const uint8_t outputRowShifts[6] = {
+        1,
+        0,
+        7,
+        3,
+        2,
+        1};
 
     CPU_PRESCALE(0);
 
@@ -105,48 +121,32 @@ int main(void)
         i_key = 0;
         keyboard_modifier_keys = 0x00;
         // configure ports 0 = input, 1 = output, 1 = unused (as outputs)
-        // columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
-        // rows: D1 D0 B7 B3 B2 B1
-        DDRB = 0b01110001; // 3,2,1 inputs, 6,5,4 outputs, 7,0 unused
-        DDRC = 0b11111111; // 7,6 outputs, 5,4,3,2,1,0 unused
-        DDRD = 0b11111100; // 1,0 inputs 7,3,2 outputs, 4,5,6 unused
-        DDRF = 0b11111111; // inputs, 0,1,4,5,6,7 outputs, 2,3 unused
+        // columns (inputs): F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
+        // rows (outputs): D1 D0 B7 B3 B2 B1
+        DDRB = 0b10001111; // 3,2,1 outputs,    6,5,4       inputs,     7,0         unused
+        DDRC = 0b00111111; //       outputs,    7,6         inputs,     5,4,3,2,1,0 unused
+        DDRD = 0b01110011; // 1,0   outputs,    7,3,2       inputs,     4,5,6       unused
+        DDRF = 0b00001100; //       outputs,    0,1,4,5,6,7 inputs,     2,3         unused
 
-        // set all pins low
-        PORTB = 0b0000000;
-        PORTC = 0b0000000;
-        PORTD = 0b0000000;
-        PORTF = 0b0000000;
+        // set all pins high
+        PORTB = 0b1111111;
+        PORTC = 0b1111111;
+        PORTD = 0b1111111;
+        PORTF = 0b1111111;
 
         // read all ports
-        for (b = 0; b < 15; b++)
+        for (i = 0; i < 6; i++)
         {
-            *(columns[b]) = *(columns[b]) | (0x01 << columnShift[b]); // set pin high
-            if ((PIND >> 1) & 0x01)
+            // set i:th row low
+            *(outputRows[i]) &= ~(1 << outputRowShifts[i]);
+
+            // check all columns
+            for (b = 0; b < 15; b++)
             {
-                state[0][b] = true;
+                state[i][b] = (*(inputColumns[b]) >> inputColumnShifts[b]) & 0x01;
             }
-            if (PIND & 0x01)
-            {
-                state[1][b] = true;
-            }
-            if ((PINB >> 7) & 0x01)
-            {
-                state[2][b] = true;
-            }
-            if ((PINB >> 3) & 0x01)
-            {
-                state[3][b] = true;
-            }
-            if ((PINB >> 2) & 0x01)
-            {
-                state[4][b] = true;
-            }
-            if ((PINB >> 1) & 0x01)
-            {
-                state[5][b] = true;
-            }
-            *(columns[b]) = *(columns[b]) & ~(0x01 << columnShift[b]); // set pin low
+            // set i:th row back high
+            *(outputRows[i]) |= (1 << outputRowShifts[i]);
         }
         // check for changes
         for (i = 0; i < 6; i++)
