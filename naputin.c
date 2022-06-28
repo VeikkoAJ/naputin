@@ -119,7 +119,7 @@ int main(void)
             }
         }
         i_key = 0;
-        keyboard_modifier_keys = 0x00;
+        // keyboard_modifier_keys = 0x00;
         // configure ports 0 = input, 1 = output, 1 = unused (as outputs)
         // columns (inputs): F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
         // rows (outputs): D1 D0 B7 B3 B2 B1
