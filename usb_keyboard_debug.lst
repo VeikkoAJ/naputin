@@ -1480,39 +1480,39 @@
  1610               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 usb_keyboard_debug.c
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:2      *ABS*:0000003f __SREG__
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:3      *ABS*:0000003e __SP_H__
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:4      *ABS*:0000003d __SP_L__
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:5      *ABS*:00000034 __CCP__
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:19     .text.usb_init:00000000 usb_init
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:2      *ABS*:0000003f __SREG__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:3      *ABS*:0000003e __SP_H__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:4      *ABS*:0000003d __SP_L__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:5      *ABS*:00000034 __CCP__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:19     .text.usb_init:00000000 usb_init
                              .bss:00000008 usb_configuration
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:62     .text.usb_configured:00000000 usb_configured
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:77     .text.usb_keyboard_send:00000000 usb_keyboard_send
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1242   .bss:00000000 keyboard_modifier_keys
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1248   .bss:00000001 keyboard_keys
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1296   .bss:00000009 keyboard_idle_count
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:169    .text.usb_keyboard_press:00000000 usb_keyboard_press
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:202    .text.usb_debug_putchar:00000000 usb_debug_putchar
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1319   .bss:0000000c previous_timeout.1424
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1317   .bss:0000000a debug_flush_timer
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:313    .text.usb_debug_flush_output:00000000 usb_debug_flush_output
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:359    .text.__vector_10:00000000 __vector_10
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1311   .data:00000000 keyboard_idle_config
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1318   .bss:0000000b div4.1472
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:504    .text.__vector_11:00000000 __vector_11
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1259   .progmem.data:00000000 descriptor_list
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1299   .progmem.data:0000003f endpoint_config_table
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1315   .data:00000001 keyboard_protocol
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1254   .bss:00000007 keyboard_leds
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1324   .progmem.data:00000047 device_descriptor
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1345   .progmem.data:00000059 config1_descriptor
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1407   .progmem.data:00000094 keyboard_hid_report_desc
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1473   .progmem.data:000000d3 debug_hid_report_desc
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1497   .progmem.data:000000e8 string0
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1503   .progmem.data:000000ec string1
-C:\Users\KYTTJ~1\AppData\Local\Temp/cccA8WIv.s:1517   .progmem.data:000000fe string2
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:62     .text.usb_configured:00000000 usb_configured
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:77     .text.usb_keyboard_send:00000000 usb_keyboard_send
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1242   .bss:00000000 keyboard_modifier_keys
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1248   .bss:00000001 keyboard_keys
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1296   .bss:00000009 keyboard_idle_count
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:169    .text.usb_keyboard_press:00000000 usb_keyboard_press
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:202    .text.usb_debug_putchar:00000000 usb_debug_putchar
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1319   .bss:0000000c previous_timeout.1424
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1317   .bss:0000000a debug_flush_timer
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:313    .text.usb_debug_flush_output:00000000 usb_debug_flush_output
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:359    .text.__vector_10:00000000 __vector_10
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1311   .data:00000000 keyboard_idle_config
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1318   .bss:0000000b div4.1472
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:504    .text.__vector_11:00000000 __vector_11
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1259   .progmem.data:00000000 descriptor_list
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1299   .progmem.data:0000003f endpoint_config_table
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1315   .data:00000001 keyboard_protocol
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1254   .bss:00000007 keyboard_leds
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1324   .progmem.data:00000047 device_descriptor
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1345   .progmem.data:00000059 config1_descriptor
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1407   .progmem.data:00000094 keyboard_hid_report_desc
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1473   .progmem.data:000000d3 debug_hid_report_desc
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1497   .progmem.data:000000e8 string0
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1503   .progmem.data:000000ec string1
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccstZr0b.s:1517   .progmem.data:000000fe string2
 
 UNDEFINED SYMBOLS
 __do_copy_data
