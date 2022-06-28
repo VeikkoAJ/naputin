@@ -63,7 +63,7 @@ int main(void)
         &PIND,  // 13
         &PIND}; // 14
 
-    const char inputColumnShifts[15] = {
+    const uint8_t inputColumnShifts[15] = {
         0,  // 0
         1,  // 1
         4,  // 2
@@ -146,7 +146,7 @@ int main(void)
                 state[i][b] = (*(inputColumns[b]) >> inputColumnShifts[b]) & 0x01;
             }
             // set i:th row back high
-            *(outputRows[i]) |= (1 << outputRowShifts[i]);
+            *(outputRows[i]) |= (0x01 << outputRowShifts[i]);
         }
         // add sum logic for changes
 
