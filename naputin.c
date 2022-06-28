@@ -90,7 +90,7 @@ int main(void)
     // wait for system to become ready
     _delay_ms(1000);
 
-    uint8_t i, b;
+    uint8_t i, b, i_key;
     while (1)
     {
         print("\nmain loop started\n");
@@ -103,10 +103,10 @@ int main(void)
             }
         }
         i_key = 0;
-        keyboard_modifier_keys = 0x00;
-        // configure ports 0 = input, 1 = output, 1 = unused (as outputs)
-        // columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
-        // rows: D1 D0 B7 B3 B2 B1
+        // keyboard_modifier_keys = ;
+        //  configure ports 0 = input, 1 = output, 1 = unused (as outputs)
+        //  columns: F0 F1 F4 F5 F6 F7 B6 B5 B4 D7 D6 C7 C6 D3 D2
+        //  rows: D1 D0 B7 B3 B2 B1
         DDRB = 0b01110001; // 3,2,1 inputs, 6,5,4 outputs, 7,0 unused
         DDRC = 0b11111111; // 7,6 outputs, 5,4,3,2,1,0 unused
         DDRD = 0b11111100; // 1,0 inputs 7,3,2 outputs, 4,5,6 unused
