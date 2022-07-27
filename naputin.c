@@ -165,7 +165,6 @@ int main(void)
 
     while (1)
     {
-        print("\nmain loop started\n");
         // set all pins high
         PORTB = 0xff;
         PORTC = 0xff;
@@ -241,7 +240,40 @@ int main(void)
             sei();
             _delay_ms(2);
         }
-        usb_keyboard_send();
+
+        // check bootloader condition
+        bool esc, page_up, page_down = false;
+        for (int d = 0; d < 6; d++)
+        {
+            switch (keyboard_keys[d])
+            {
+            case KEY_ESC:
+                esc = true : break;
+            case KEY_PAGE_UP:
+                page_up = true;
+                break;
+            case KEY_PAGE_DOWN:
+                page_down = true;
+                break;
+            }
+        }
+        // if any keypresses were detected, reset the idle counter
+        if (reset_idle)
+        {
+            cli();
+            idle_count = 0;
+            sei();
+        }
+
+        if (esc && page_up && page_down)
+        {
+            // disable interrupts then jump to bootloader
+            cli();
+            asm volatile("jmp 0x7E00");
+        }
+
+        if (keyboard_keys)
+            usb_keyboard_send();
     }
 }
 
