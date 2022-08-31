@@ -46,8 +46,8 @@ TARGET = naputin
 
 # List C source files here. (C dependencies are automatically generated.)
 SRC =	$(TARGET).c \
-	usb_keyboard_debug.c \
-	print.c
+	usb_keyboard.c 
+
 
 
 # MCU name, you MUST set this to match the board you are using
