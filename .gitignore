@@ -51,5 +51,12 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# Vscode
-.usb_keyboard/
+#compiled files
+*.eep
+*.lss
+*.lst
+*.sym
+*.ist
+
+#vscode files
+.vscode
