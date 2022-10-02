@@ -1157,34 +1157,34 @@
  1265               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 usb_keyboard.c
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:2      *ABS*:0000003f __SREG__
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:3      *ABS*:0000003e __SP_H__
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:4      *ABS*:0000003d __SP_L__
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:5      *ABS*:00000034 __CCP__
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:19     .text.usb_init:00000000 usb_init
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:2      *ABS*:0000003f __SREG__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:3      *ABS*:0000003e __SP_H__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:4      *ABS*:0000003d __SP_L__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:5      *ABS*:00000034 __CCP__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:19     .text.usb_init:00000000 usb_init
                              .bss:00000008 usb_configuration
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:62     .text.usb_configured:00000000 usb_configured
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:77     .text.usb_keyboard_send:00000000 usb_keyboard_send
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:974    .bss:00000000 keyboard_modifier_keys
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:980    .bss:00000001 keyboard_keys
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1020   .bss:00000009 keyboard_idle_count
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:169    .text.usb_keyboard_press:00000000 usb_keyboard_press
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:202    .text.__vector_10:00000000 __vector_10
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1033   .data:00000000 keyboard_idle_config
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1039   .bss:0000000a div4.1423
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:313    .text.__vector_11:00000000 __vector_11
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:991    .progmem.data:00000000 descriptor_list
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1023   .progmem.data:00000031 endpoint_config_table
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1037   .data:00000001 keyboard_protocol
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:986    .bss:00000007 keyboard_leds
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1044   .progmem.data:00000037 device_descriptor
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1065   .progmem.data:00000049 config1_descriptor
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1102   .progmem.data:0000006b keyboard_hid_report_desc
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1168   .progmem.data:000000aa string0
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1174   .progmem.data:000000ae string1
-C:\Users\KYTTJ~1\AppData\Local\Temp/ccVp5HAQ.s:1188   .progmem.data:000000c0 string2
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:62     .text.usb_configured:00000000 usb_configured
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:77     .text.usb_keyboard_send:00000000 usb_keyboard_send
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:974    .bss:00000000 keyboard_modifier_keys
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:980    .bss:00000001 keyboard_keys
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1020   .bss:00000009 keyboard_idle_count
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:169    .text.usb_keyboard_press:00000000 usb_keyboard_press
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:202    .text.__vector_10:00000000 __vector_10
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1033   .data:00000000 keyboard_idle_config
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1039   .bss:0000000a div4.1423
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:313    .text.__vector_11:00000000 __vector_11
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:991    .progmem.data:00000000 descriptor_list
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1023   .progmem.data:00000031 endpoint_config_table
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1037   .data:00000001 keyboard_protocol
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:986    .bss:00000007 keyboard_leds
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1044   .progmem.data:00000037 device_descriptor
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1065   .progmem.data:00000049 config1_descriptor
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1102   .progmem.data:0000006b keyboard_hid_report_desc
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1168   .progmem.data:000000aa string0
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1174   .progmem.data:000000ae string1
+C:\Users\KYTTJ~1\AppData\Local\Temp/ccQtnHue.s:1188   .progmem.data:000000c0 string2
 
 UNDEFINED SYMBOLS
 __do_copy_data

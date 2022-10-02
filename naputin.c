@@ -174,7 +174,7 @@ int main(void)
             }
         }
 
-        if (!state[0][0] & !state[0][14])
+        if (!state[0][0] & !state[0][14]) //
         {
             for (int d = 0; d < 3; d++)
             {
@@ -186,20 +186,19 @@ int main(void)
             bootloaderCounter++;
             if (bootloaderCounter > 2)
             {
-                jumpToBootLoader();
+                jumpToBootloader();
             }
         }
         else
         {
             bootloaderCounter = 0;
         }
-        _delay_ms(1);
+        _delay_us(100);
         if (reset_idle)
         {
             cli();
             idle_count = 0;
             sei();
-            _delay_ms(2);
         }
         usb_keyboard_send();
     }

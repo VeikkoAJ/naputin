@@ -129,9 +129,9 @@ extern volatile uint8_t keyboard_leds;
 #define KEYPAD_PERIOD 99
 
 #define KEY_INT_1 0x64 // "<" and ">""
-#define KEY_DELTA 0x71 // Actually the F22 key
-#define KEY_OMEGA 0x72 // Actually the F23 key
-#define KEY_SIGMA 0x73 // Actually the F24 key
+#define KEY_DELTA 0x68 // Actually the F13 key
+#define KEY_OMEGA 0x69 // Actually the F14 key
+#define KEY_SIGMA 0x6a // Actually the F15 key
 
 // Everything below this point is only intended for usb_serial.c
 #ifdef USB_SERIAL_PRIVATE_INCLUDE
