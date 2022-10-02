@@ -42,7 +42,7 @@ uint8_t keys_osx[15][6] = {
     {KEY_F12, KEY_BACKSPACE, KEY_ENTER, 0x00, KEY_UP, KEY_DOWN},
     {KEY_DELETE, KEY_PAGE_UP, KEY_PAGE_DOWN, 0x00, 0x00, KEY_RIGHT}};
 
-int isModifierKey(int i, int b, keys)
+int isModifierKey(int i, int b)
 {
     uint8_t key = 0x00;
     if (b == 0 && i == 4)
@@ -85,7 +85,7 @@ int isModifierKey(int i, int b, keys)
     return 0;
 }
 
-void jumpToBootloader()
+void jumpToBootloader(void)
 {
     cli();
     UDCON = 1;
