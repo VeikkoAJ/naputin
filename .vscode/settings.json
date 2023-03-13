@@ -1,8 +1,0 @@
-{
-    "C_Cpp.errorSquiggles": "Disabled",
-    "files.associations": {
-        "delay.h": "c",
-        "print.h": "c",
-        "usb_keyboard_debug.h": "c"
-    }
-}
